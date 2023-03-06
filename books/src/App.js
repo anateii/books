@@ -12,7 +12,7 @@ function App() {
     const getRandomId = Math.round(Math.random() * 9999);
     const updatedBooks = [...books, { id: getRandomId, title: title }];
     //1.Create new array (updated books)
-    //2.Coppy all the elements from old array (...books)
+    //2.Copy all the elements from old array (...books)
     //3. Add new book into the array
     //4. Update our books array with setBooks(udpdatedBooks), new state
 
@@ -27,9 +27,24 @@ function App() {
     setBooks(updatedBooks);
   };
 
+  const editBookById = (id, newTitle) => {
+    const updatedBooks = books.map((book) => {
+      if (book.id === id) {
+        return { ...books, title: newTitle };
+      }
+
+      //if we are mapping over another book, that hasa a different id, not the id
+      //the id that we're looking for, then we are going to return the book and we don't
+      //want to mess with the  other book in any way
+      return book;
+    });
+
+    setBooks(updatedBooks);
+  };
+
   return (
     <div className="app">
-      <BookList books={books} onDelete={deleteBookById} />
+      <BookList books={books} onDelete={deleteBookById} onEdit={editBookById} />
       <BookCreate onClickButton={addBook} />
     </div>
   );
