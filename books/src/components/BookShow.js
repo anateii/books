@@ -8,10 +8,15 @@ function BookShow({ book, onDelete, onEdit }) {
     setShowEdit(!showEdit);
   };
 
+  const handleEditSubmit = (id, newTitle) => {
+    onEdit(id, newTitle); //handles the new title of the book
+    setShowEdit(false); //handles that on submit button the edit disappears
+  };
+
   let content = <h3>{book.title}</h3>;
   //let allows us to change this variable over time
   if (showEdit) {
-    content = <BookEdit book={book} onEdit={onEdit} />;
+    content = <BookEdit book={book} handleEditSubmit={handleEditSubmit} />;
   }
 
   return (
