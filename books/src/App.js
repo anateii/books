@@ -29,7 +29,9 @@ function App() {
     setBooks(updatedBooks);
   };
 
-  const deleteBookById = (id) => {
+  const deleteBookById = async (id) => {
+    await axios.delete(`http://localhost:3001/books/${id}`);
+
     const updatedBooks = books.filter((book) => {
       return book.id !== id;
     });
@@ -37,15 +39,20 @@ function App() {
     setBooks(updatedBooks);
   };
 
-  const editBookById = (id, newTitle) => {
+  const editBookById = async (id, newTitle) => {
+    const response = await axios.put(`http://localhost:3001/books/${id}`, {
+      title: newTitle,
+    });
+
     const updatedBooks = books.map((book) => {
       if (book.id === id) {
-        return { ...books, title: newTitle };
+        return { ...books, ...response.data };
+        //...response.data means take all the different properties out of that project
+        //take all the different key value pairs and add them into the ...books object
+        //because imagine two users are trying to update the same record at the same time,
+        //we want to give back the updated books to both of them
       }
 
-      //if we are mapping over another book, that has a different id, not the id
-      //the id that we're looking for, then we are going to return the book and we don't
-      //want to mess with the  other book in any way
       return book;
     });
 

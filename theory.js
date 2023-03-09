@@ -70,6 +70,7 @@
 
 //3.Understanding sta
 
+//ADD BOOK
 // const addBook = (title) => {
 
 // console.log("Add Book with title: ", title);
@@ -82,3 +83,19 @@
 //3. Add new book into the array
 //4. Update our books array with setBooks(udpdatedBooks), new state
 //  }
+
+//EDIT BOOK
+//   const editBookById = (id, newTitle) => {
+//     const updatedBooks = books.map((book) => {
+//       if (book.id === id) {
+//         return { ...books, title: newTitle };
+//       }
+
+//if we are mapping over another book, that has a different id, not the id
+//the id that we're looking for, then we are going to return the book and we don't
+//want to mess with the  other book in any way
+//       return book;
+//     });
+
+//     setBooks(updatedBooks);
+//   };
