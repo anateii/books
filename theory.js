@@ -128,7 +128,8 @@
 //        <MyComponent />
 //      </BookContext.Provider>
 //BookContext is the object context we created in Step 1.
-//The Provider property is used as a React Component to specify the data that I want to share
+//The Provider property is used as a React Component to specify the data that I want to share and it]s
+//automatically created for us when we use context
 //The value prop is sper special. Whatever you provide to that prop is the information that you're going to share
 //with the rest of the application
 //MyComponent can now access the value shared in context (5)
@@ -144,3 +145,14 @@
 //useContext is the function for accessing value in context
 //BookContext is the context object
 //num is the value stored in context --> 5
+//However that value, 5, is hard coded, static and unchanged. We need to think of a better way to dynamically change
+//add that value to change over time
+//But when it changes that means the component re-renders. How to update it?
+
+//We need to wrap BooksContext.Provider with a Custom Provider we create!! That is telling the Provider what data
+//to share. Inside the Custom Provider we are going to set up the piece of state and the callback function to change that state
+//that we are going to pass down. We don't need to cal it Provider however
+
+//1. In the same context js file, we are going to create a new component called Provider that is going to create our piece
+//   of state and it's then creating an object to share with rest of the application
+//2. At the bottom of our custom provider we're going to display the context provider, BooksContext and assign the valueToShare
