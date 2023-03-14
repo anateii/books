@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import BooksContext from "../context/books";
 
-function BookCreate({ onClickButton }) {
+function BookCreate() {
   const [title, setTitle] = useState("");
+  const { addBook } = useContext(BooksContext);
 
   const handleChange = (e) => {
     setTitle(e.target.value);
@@ -9,7 +11,7 @@ function BookCreate({ onClickButton }) {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    onClickButton(title);
+    addBook(title);
     setTitle(""); //re-renders the component by forcing the input to show a value of empty string
   };
 

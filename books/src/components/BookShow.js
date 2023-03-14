@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import BooksContext from "../context/books";
 import BookEdit from "./BookEdit";
 
-function BookShow({ book, onDelete, onEdit }) {
+function BookShow({ book }) {
   const [showEdit, setShowEdit] = useState(false);
+
+  const { deleteBookById } = useContext(BooksContext);
 
   const handleEditClick = () => {
     setShowEdit(!showEdit);
   };
 
-  const handleEditSubmit = (id, newTitle) => {
-    onEdit(id, newTitle); //handles the new title of the book
+  const handleEditSubmit = () => {
     setShowEdit(false); //handles that on submit button the edit disappears
   };
 
@@ -27,7 +29,7 @@ function BookShow({ book, onDelete, onEdit }) {
         <button className="edit" onClick={handleEditClick}>
           Edit
         </button>
-        <button className="delete" onClick={() => onDelete(book.id)}>
+        <button className="delete" onClick={() => deleteBookById(book.id)}>
           Delete
         </button>
       </div>

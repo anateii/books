@@ -1,11 +1,7 @@
 {
   "books": [
     {
-      "title": "Harry Potter",
-      "id": 1
-    },
-    {
-      "title": "new book",
+      "title": "Divina Commedia - Purgatorio",
       "id": 2
     }
   ]
