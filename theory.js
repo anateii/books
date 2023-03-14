@@ -1,4 +1,4 @@
-// THIS IS THE THEORY BEHIND THE APP
+// ............THIS IS THE THEORY BEHIND THE APP..........................
 
 ////State updated? Rerender the component it is defined in + all that components children
 //Find all the components that need to use this state
@@ -23,7 +23,7 @@
 //DON'T DO THIS: fetchBooks(). In the beginning you can see this line of code works,
 //BUT we are getting a pretty nasty bug down the line.
 
-// Flow of the data:
+//Flow of the data:
 //1. Whenever our app component is first rendered on the screen we are defining a state
 //2. We are defining a function for fetching the books
 //3. We are calling fetchBooks(). When we call fetch books, we get a response back that is
@@ -41,7 +41,7 @@
 // - First argument is a function that executes the code we want to run
 // - Second argument is an array or nothing. This controls whether the function is executed or rerenders
 
-//TRICKY THINGS AROUND useEffect()
+//---------------------TRICKY THINGS AROUND useEffect()
 
 //1. Understanding when our arrow function gets called
 
@@ -70,7 +70,7 @@
 
 //3.Understanding sta
 
-//ADD BOOK
+//--------------------ADD BOOK
 // const addBook = (title) => {
 
 // console.log("Add Book with title: ", title);
@@ -84,7 +84,7 @@
 //4. Update our books array with setBooks(udpdatedBooks), new state
 //  }
 
-//EDIT BOOK
+//------------------EDIT BOOK
 //   const editBookById = (id, newTitle) => {
 //     const updatedBooks = books.map((book) => {
 //       if (book.id === id) {
@@ -99,3 +99,48 @@
 
 //     setBooks(updatedBooks);
 //   };
+
+//------------------CONTEXT
+
+//Context is kind of like an alternative to Props system. Props is all about communication between
+//a parent and a immediate child
+//With context system we can share data accross many different components, even if they don't have a
+//direct link to each other.
+
+//Once we share this data, our different components can then reach out to this context and ask for very
+//particular pieces of data.
+
+//Context is NOT a replacement for Props and NOT a replacement for Redux. By itself is a communication channel
+//It doesn't really care what data you're sharing or how that data is organized.
+
+//....How to use Context?
+
+// 1. Create the context in a file
+//     import {createContext} from 'react'
+//     const BookContext = createContext()
+//     BookContext is the context object, we name it after the data that it's eventually going to store
+//This object has 2 properties inside:
+// A] Provider: Component used to specify what data we want to share to the rest of our application
+// B] Consumer: Component used to get access to data. Not often used.
+
+// 2. Specify the data that will be shared
+//      <BookContext.Provider value={5}>
+//        <MyComponent />
+//      </BookContext.Provider>
+//BookContext is the object context we created in Step 1.
+//The Provider property is used as a React Component to specify the data that I want to share
+//The value prop is sper special. Whatever you provide to that prop is the information that you're going to share
+//with the rest of the application
+//MyComponent can now access the value shared in context (5)
+
+// 3. Consume the data in a component
+//     import {useContext} from 'react
+//     import BookContext from './book'
+//
+//     function MyComponent() {
+//       const num = useContext(BookContext)
+//       return <div>{num}</div>
+//      }
+//useContext is the function for accessing value in context
+//BookContext is the context object
+//num is the value stored in context --> 5
