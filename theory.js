@@ -113,7 +113,7 @@
 //Context is NOT a replacement for Props and NOT a replacement for Redux. By itself is a communication channel
 //It doesn't really care what data you're sharing or how that data is organized.
 
-//....How to use Context?
+//....HOW TO USE CONTEXT?
 
 // 1. Create the context in a file
 //     import {createContext} from 'react'
@@ -156,3 +156,16 @@
 //1. In the same context js file, we are going to create a new component called Provider that is going to create our piece
 //   of state and it's then creating an object to share with rest of the application
 //2. At the bottom of our custom provider we're going to display the context provider, BooksContext and assign the valueToShare
+
+//....WHAT DATA SHOULD WE PASS THROUGH CONTEXT?
+
+//We need to take a look at all of our different states and classify it either as APPLICATION STATE or COMPONENT STATE
+//   - Application State: Data that is used by MANY different components
+//   - Component State: Data that is used by very FEW components
+//These terms are not some magical features of React, they are used by developers to better understand how to best design your
+//state that is still the SAME we've been working with...
+
+//When we identified our Application State is often (not always) a good idea to take that state and put it into context so we can
+//very easily access that state from anywhere inside of our application
+//But we are probably never going to locate our Component State inside of context because there's simply no need to share that pioece
+//of data since it's not useful for any other component
